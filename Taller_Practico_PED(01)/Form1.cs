@@ -39,8 +39,10 @@ namespace Taller_Practico_PED_01_
             if (string.IsNullOrEmpty(nombre) ) {
                 MessageBox.Show("Por favor, ingrese un nombre.");
                 return;
-            }
-            else {
+            } else if (nombre.Any(char.IsDigit)){ 
+                MessageBox.Show("El nombre no debe contener números.");
+                return;
+            }else {
                 cola.Encolar(nombre);
                 txtNombre.Clear();
                 txtNombre.Focus();
