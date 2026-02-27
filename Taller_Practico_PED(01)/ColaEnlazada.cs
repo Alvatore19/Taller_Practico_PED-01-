@@ -76,5 +76,18 @@ namespace Taller_Practico_PED_01_
 
             return nombres;
         }
+
+        // Método para contar nodos
+        public int Contar()
+        {
+            int contador = 0;
+            Nodo actual = Cabeza;
+            while (actual != null)
+            {
+                contador++;
+                actual = actual.Siguiente;
+            }
+            return contador;
+        }
     }
 }

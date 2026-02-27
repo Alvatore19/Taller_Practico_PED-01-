@@ -30,6 +30,7 @@ namespace Taller_Practico_PED_01_
             {
                 MessageBox.Show("No hay nombres en la cola.", "Atención");
             }
+            pnlDibujo.Invalidate(); // Esto fuerza a que se vuelva a llamar al evento Paint
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -49,6 +50,7 @@ namespace Taller_Practico_PED_01_
                 
                 MessageBox.Show("Nombre encolado: " + nombre, "Registro");
             }
+            pnlDibujo.Invalidate(); // Esto fuerza a que se vuelva a llamar al evento Paint
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
@@ -75,6 +77,46 @@ namespace Taller_Practico_PED_01_
             cola = new ColaEnlazada();
             lstEspera.Items.Clear();
             MessageBox.Show("Cola limpiada.", "Limpieza");
+        }
+
+        private void pnlDibujo_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+
+            // Configuración visual
+            Pen plumaFlecha = new Pen(Color.Black, 2);
+            plumaFlecha.CustomEndCap = new System.Drawing.Drawing2D.AdjustableArrowCap(5, 5); // Flecha
+
+            Brush pincelRectangulo = Brushes.LightBlue;
+            Pen plumaRectangulo = new Pen(Color.Black, 2);
+            Font fuenteTexto = new Font("Arial", 9, FontStyle.Bold);
+            Brush pincelTexto = Brushes.Black;
+
+            int x = 10; // Posición inicial
+            int y = 20;
+            int ancho = 80;
+            int alto = 40;
+
+            Nodo actual = cola.Cabeza;
+
+            while (actual != null)
+            {
+                // 1. Dibujar Rectángulo (Nodo)
+                g.FillRectangle(pincelRectangulo, x, y, ancho, alto);
+                g.DrawRectangle(plumaRectangulo, x, y, ancho, alto);
+
+                // 2. Dibujar Nombre
+                g.DrawString(actual.Nombre, fuenteTexto, pincelTexto, x + 5, y + 10);
+
+                // 3. Dibujar Flecha al siguiente
+                if (actual.Siguiente != null)
+                {
+                    g.DrawLine(plumaFlecha, x + ancho, y + (alto / 2), x + ancho + 20, y + (alto / 2));
+                }
+
+                x += ancho + 20; // Espaciado para el siguiente nodo
+                actual = actual.Siguiente;
+            }
         }
     }
 }

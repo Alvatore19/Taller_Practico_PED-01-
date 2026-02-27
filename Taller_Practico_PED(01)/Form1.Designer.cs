@@ -194,6 +194,7 @@
             this.pnlDibujo.Name = "pnlDibujo";
             this.pnlDibujo.Size = new System.Drawing.Size(600, 186);
             this.pnlDibujo.TabIndex = 0;
+            this.pnlDibujo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlDibujo_Paint);
             // 
             // Form1
             // 

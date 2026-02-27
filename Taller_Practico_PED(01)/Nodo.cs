@@ -16,4 +16,5 @@ namespace Taller_Practico_PED_01_
             Siguiente = null;
         }
     }
+    //clase nodo
 }
