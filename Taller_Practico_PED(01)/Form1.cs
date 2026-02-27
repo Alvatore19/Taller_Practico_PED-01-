@@ -77,6 +77,7 @@ namespace Taller_Practico_PED_01_
             cola = new ColaEnlazada();
             lstEspera.Items.Clear();
             MessageBox.Show("Cola limpiada.", "Limpieza");
+            pnlDibujo.Invalidate(); // Esto fuerza a que se vuelva a llamar al evento Paint
         }
 
         private void pnlDibujo_Paint(object sender, PaintEventArgs e)
